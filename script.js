@@ -16,13 +16,11 @@ const loadCocktail = async (value) => {
     
     cocktailPage.innerHTML = "";
     
-
     for (const item of data.drinks) {
-      
       cocktailPage.innerHTML += `
         <p>${item.strDrink}</p>
         <p>${item.strInstructions}</p><ul>`
-      for (let i = 1; i <=15 ; i++) {
+      for (let i = 1; i <= 15 ; i++) {
         const ingredient = item["strIngredient" + i];
         const measure = item["strMeasure" + i];
         if(ingredient && measure){
@@ -30,7 +28,6 @@ const loadCocktail = async (value) => {
         }
       };
       cocktailPage.innerHTML += `</ul>`
-
     }}
     catch (error) {
       console.log("error", error);
