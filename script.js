@@ -15,26 +15,25 @@ const loadCocktail = async (value) => {
     const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
     const data = await res.json();
     console.log("data", data);
-    
     cocktailPage.innerHTML = "";
     
 
     for (const item of data.drinks) {
+  
       cocktailPage.innerHTML += `
         <p class="cocktailName">${item.strDrink}</p>
-        <p>${item.strInstructions}</p><ul>`
+        <p>${item.strInstructions}</p>`
 
         const valueCocktailName= document.querySelector(".cocktailName")
         loadCocktailImage(valueCocktailName)
 
-      for (let i = 1; i <=15 ; i++) {
+      for (let i = 1; i <= 15 ; i++) {
         const ingredient = item["strIngredient" + i];
         const measure = item["strMeasure" + i];
         if(ingredient && measure){
           cocktailPage.innerHTML += `<li>${ingredient} : ${measure} </li>`
         }
       };
-      cocktailPage.innerHTML += `</ul>`
     }}
     catch (error) {
       console.log("error", error);
@@ -52,7 +51,7 @@ const loadCocktail = async (value) => {
         }
       });
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       const image = data.photos[0];
       
     
