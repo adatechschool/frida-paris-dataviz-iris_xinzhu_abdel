@@ -1,22 +1,27 @@
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailPage = document.querySelector("#cocktailPage");
-const imageContainer = document.getElementById("imageContainer");
 
 form.addEventListener("submit", (event) => {
+    const homePage = document.querySelector("#homePage");
+
     event.preventDefault();
+
     const inputValue = input.value.trim();
     if (!inputValue) { // pour regler le cas de quand il y a rien (ca affichait undifined et plein de trucs)
-        cocktailPage.innerHTML = `<p> Entrez un nom de cocktail ou un ingrédient 🍋🍸</p>`
+        cocktailPage.innerHTML = `<p> Please tap an ingredient or a cocktail name 🍋🍸</p>`
         return;
     }
     loadCocktail(inputValue);
+    homePage.style.display = "none";
+
+    input.value = ""; //on vide le champs de texte après chqaue click 
 });
 
 
 const loadCocktail = async (value) => {
     try {
-        cocktailPage.innerHTML = `<p>Chargment ... ⚙ </p>`// on peut changer par un .svg si on veut
+        cocktailPage.innerHTML = `<p>Loading ... ⚙ </p>`// on peut changer par un .svg si on veut
         const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
         const data = await res.json();
 
@@ -36,22 +41,21 @@ const htmlAppend = async (data) => {
             <h2 class="cocktailName">${item.strDrink}</h2>`
 
         const valueCocktailName = item.strDrink;
+
         let source = await getCocktailImageSrc(valueCocktailName);
-        // console.log("src", source);
         cocktailPage.innerHTML += `<img src=${source}>`;
 
         cocktailPage.innerHTML += `<p>${item.strInstructions}</p>`
 
         for (let i = 1; i <= 15; i++) {
-            const ingredient = item["strIngredient" + i];
+            const ingredient = item["strIngredient" + i]; //item["strIngredient1"] : accès dynamique via chaîne de caractère, équivalent de item.Stringredient1
             const measure = item["strMeasure" + i];
             if (ingredient && measure) {
                 cocktailPage.innerHTML += `<li>${ingredient} : ${measure} </li>`
-            }
+            };
         };
-    }
-
-}
+    };
+};
 
 const getCocktailImageSrc = async (value) => {
     try {
@@ -61,9 +65,9 @@ const getCocktailImageSrc = async (value) => {
             }
         });
         const data = await response.json();
+        console.log("dataomage",data)
         const imageSrc = data.photos[0].src.large;
         return imageSrc;
-        // console.log("src",imageSrc);
 
     } catch (error) {
         console.log("erreur :", error);
