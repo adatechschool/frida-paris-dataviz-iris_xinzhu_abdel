@@ -8,3 +8,10 @@
 - fonction getImageSource rendu fonctionnelle : récupération de la source des images issues du 2e API
 - intégration getImageSource dans la fonction loadPage et intégration dans le DOM
 
+24/07
+- bouton menu hamburger rendu fonctionnel 
+- validation des éléments design : logo, police, emplacement de la fiche des cocktails, nom du site
+- séparation de la fonction affichage du fetch 
+- switch de page Homepage et fichecocktail 
+
+
