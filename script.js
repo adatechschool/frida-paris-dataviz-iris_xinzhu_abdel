@@ -19,7 +19,7 @@ const loadCocktail = async (value) => {
 
         for (const item of data.drinks) {
             cocktailPage.innerHTML += `
-            <p class="cocktailName">${item.strDrink}</p>`
+            <h2 class="cocktailName">${item.strDrink}</h2>`
 
             const valueCocktailName = item.strDrink;
             let source = await getCocktailImageSrc(valueCocktailName);
