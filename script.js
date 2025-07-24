@@ -77,13 +77,13 @@ const toggle = document.querySelector("#menu-toggle")
 const toggle2 = document.querySelector("#menu-toggle-2")
 const menu = document.querySelector("#nav-menu")
 
-// toggle.addEventListener("click", () => {
-//     menu.classList.toggle("hidden")
+toggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden")
     
-// })
-// toggle2.addEventListener("click", () => {
-//     menu.classList.toggle("hidden") //
-// })
+})
+toggle2.addEventListener("click", () => {
+    menu.classList.toggle("hidden") 
+})
 
 
 
