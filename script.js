@@ -11,12 +11,11 @@ form.addEventListener("submit", (event) => {
 
 const loadCocktail = async (value) => {
     try {
-        //const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
+
         const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
         const data = await res.json();
 
         cocktailPage.innerHTML = "";
-
 
         for (const item of data.drinks) {
             cocktailPage.innerHTML += `
@@ -66,8 +65,6 @@ const getCocktailImageSrc = async (value) => {
     }
 };
 
-//
-//
 //  bouton hamburger
 const toggle = document.querySelector("#menu-toggle")
 const menu = document.querySelector("#nav-menu")
