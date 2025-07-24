@@ -12,16 +12,18 @@ header {
     cursor: pointer;
     z-index: 1000;
   }
-  
-  #menu-toggle svg {
-    width: 32px;
-    height: 32px;
-    display: block;
+
+    #menu-toggle-2 {
+    all: unset;
+    position: absolute;
+    top: 10px;
+    right: 510px;
+    cursor: pointer;
+    z-index: 1000;
   }
 
   .hidden {
-    display: none ;
-    
+    display: none ; 
   }
   
   #nav-menu {
