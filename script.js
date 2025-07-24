@@ -29,13 +29,11 @@ const loadCocktail = async (value) => {
 
 };
 
-        for (const item of data.drinks) {
-            cocktailPage.innerHTML += `
-            <h2 class="cocktailName">${item.strDrink}</h2>`
+        
 const htmlAppend = async (data) => {
     for (const item of data.drinks) {
         cocktailPage.innerHTML += `
-            <p class="cocktailName">${item.strDrink}</p>`
+            <h2 class="cocktailName">${item.strDrink}</h2>`
 
         const valueCocktailName = item.strDrink;
         let source = await getCocktailImageSrc(valueCocktailName);
@@ -74,17 +72,8 @@ const getCocktailImageSrc = async (value) => {
 
 //  bouton hamburger
 const toggle = document.querySelector("#menu-toggle")
-const toggle2 = document.querySelector("#menu-toggle-2")
 const menu = document.querySelector("#nav-menu")
 
-// toggle.addEventListener("click", () => {
-//     menu.classList.toggle("hidden")
-    
-// })
-// toggle2.addEventListener("click", () => {
-//     menu.classList.toggle("hidden") //
-// })
-
-
-
-
+ toggle.addEventListener("click", () => {
+     menu.classList.toggle("hidden")
+ }) 
