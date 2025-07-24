@@ -5,37 +5,23 @@ const imageContainer = document.getElementById("imageContainer");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const inputValue = input.value;
+    const inputValue = input.value.trim();
+    if (!inputValue) { // pour regler le cas de quand il y a rien (ca affichait undifined et plein de trucs)
+        cocktailPage.innerHTML = `<p> Entrez un nom de cocktail ou un ingrédient 🍋🍸</p>`
+        return;
+    }
     loadCocktail(inputValue);
 });
 
+
 const loadCocktail = async (value) => {
     try {
+        cocktailPage.innerHTML = `<p>Chargment ... ⚙ </p>`// on peut changer par un .svg si on veut
         const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
         const data = await res.json();
 
         cocktailPage.innerHTML = "";
-
-
-        for (const item of data.drinks) {
-            cocktailPage.innerHTML += `
-            <h2 class="cocktailName">${item.strDrink}</h2>`
-
-            const valueCocktailName = item.strDrink;
-            let source = await getCocktailImageSrc(valueCocktailName);
-            // console.log("src", source);
-            cocktailPage.innerHTML += `<img src=${source}>`;
-
-            cocktailPage.innerHTML += `<p>${item.strInstructions}</p>`
-
-            for (let i = 1; i <= 15; i++) {
-                const ingredient = item["strIngredient" + i];
-                const measure = item["strMeasure" + i];
-                if (ingredient && measure) {
-                    cocktailPage.innerHTML += `<li>${ingredient} : ${measure} </li>`
-                }
-            };
-        }
+        htmlAppend(data);
     }
     catch (error) {
         console.log("error", error);
@@ -43,10 +29,31 @@ const loadCocktail = async (value) => {
 
 };
 
-const getCocktailName = async (params) => {
+        for (const item of data.drinks) {
+            cocktailPage.innerHTML += `
+            <h2 class="cocktailName">${item.strDrink}</h2>`
+const htmlAppend = async (data) => {
+    for (const item of data.drinks) {
+        cocktailPage.innerHTML += `
+            <p class="cocktailName">${item.strDrink}</p>`
+
+        const valueCocktailName = item.strDrink;
+        let source = await getCocktailImageSrc(valueCocktailName);
+        // console.log("src", source);
+        cocktailPage.innerHTML += `<img src=${source}>`;
+
+        cocktailPage.innerHTML += `<p>${item.strInstructions}</p>`
+
+        for (let i = 1; i <= 15; i++) {
+            const ingredient = item["strIngredient" + i];
+            const measure = item["strMeasure" + i];
+            if (ingredient && measure) {
+                cocktailPage.innerHTML += `<li>${ingredient} : ${measure} </li>`
+            }
+        };
+    }
 
 }
-
 
 const getCocktailImageSrc = async (value) => {
     try {
@@ -65,15 +72,18 @@ const getCocktailImageSrc = async (value) => {
     }
 };
 
-//
-//
 //  bouton hamburger
 const toggle = document.querySelector("#menu-toggle")
+const toggle2 = document.querySelector("#menu-toggle-2")
 const menu = document.querySelector("#nav-menu")
 
-toggle.addEventListener("click", () => {
-    menu.classList.toggle("hidden")
-})
+// toggle.addEventListener("click", () => {
+//     menu.classList.toggle("hidden")
+    
+// })
+// toggle2.addEventListener("click", () => {
+//     menu.classList.toggle("hidden") //
+// })
 
 
 
