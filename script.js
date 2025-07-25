@@ -37,6 +37,7 @@ const loadCocktail = async (value) => {
 
 const htmlAppend = async (data) => {
     for (const item of data.drinks) {
+
         const cocktailPage = document.createElement("div");
         cocktailPage.classList.add("eachResultat");
         cocktailContainer.appendChild(cocktailPage);
@@ -47,7 +48,8 @@ const htmlAppend = async (data) => {
         const valueCocktailName = item.strDrink;
 
         let source = await getCocktailImageSrc(valueCocktailName);
-        cocktailPage.innerHTML += `<img src=${source}>`;
+        cocktailPage.innerHTML += `<img class="cocktailImage"src=${source}>`;
+
 
 
         for (let i = 1; i <= 15; i++) {
