@@ -17,6 +17,12 @@ header {
     z-index: 1000;
 }
 
+.errorIngredient{
+    margin-top: 30rem;
+    color: #f7dbaf ;
+    font-size: 1.5rem;
+}
+
 #logo {
     width: 80px;
     height: 80px;
@@ -145,22 +151,57 @@ form {
     
 }
 
-/*pour chaque div cocktail */
 .eachResultat {
-    background-color: rgba(0, 0, 0, 0);
-    align-items: center;
-    gap: 15px
-}
-
-
-.cocktailImage {
-    width: 500px;
     display: flex;
-    height: 500px;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 15rem auto;
+    width: 55%;
+    box-shadow: 0 0 40px #db1906, 0 0 40px #000000;
+  }
+  
+  .imgCocktail {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .cocktailImage {
+    width: 400px;
+    height: 400px;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 0 8px #db1906, 0 0 16px #a8b7b7;
-
-
-
-}
+  }
+  
+  .textContainer {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .textContainer h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #db1906;
+  }
+  
+  .textContainer p {
+    font-size: 1rem;
+    color: #f7dbaf;
+  }
+  
+  .ingredientList {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    color: #f7dbaf;
+    text-align: center;
+  }
+  
