@@ -132,3 +132,9 @@ form {
     transform: scale(0.97);
     box-shadow: 0 0 8px #db1906, 0 0 16px #00ffff;
   }
+
+#cocktailContainer{
+    margin-top: 400px;
+    align-items: center;
+    text-align: center;
+}
