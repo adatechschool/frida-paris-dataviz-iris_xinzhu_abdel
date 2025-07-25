@@ -17,6 +17,11 @@ header {
     z-index: 1000;
 }
 
+#logo {
+    width: 50%;
+    height: 50%;
+}
+
 #menu-toggle svg {
     width: 32px;
     height: 32px;
