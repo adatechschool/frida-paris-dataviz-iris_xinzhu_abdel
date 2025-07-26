@@ -100,7 +100,6 @@ form {
     padding: 20px 40px;
     border: none;
     outline: none;
-    width: 100%;
     font-size: 20px;
     background-color: #000000;
     color: #f7dbaf;
@@ -133,8 +132,12 @@ form {
     box-shadow: 0 0 8px #db1906, 0 0 16px #00ffff;
   }
 
-#cocktailContainer{
-    margin-top: 400px;
-    align-items: center;
+  #legalNotice{
+    color: rgba(255, 0, 0, 0.0.1);
+    position: fixed;
     text-align: center;
-}
+    font-size: 12px;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+  }

@@ -1,21 +1,36 @@
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
+const ageCheckingDiv = document.querySelector("#ageChecking");
+const legalNotice = document.querySelector("#legalNotice");
+const homePage = document.querySelector("#homePage");
+
+//Age popup
+let form2, day, month, year;
+
+//legal notice alcool
+legalNotice.innerHTML = `<a>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</a>`
+
 
 form.addEventListener("submit", (event) => {
-    const homePage = document.querySelector("#homePage");
 
     event.preventDefault();
 
+    //affichage du popup reste du site caché
+    ageCheckingDiv.style.display = "block";
+
     const inputValue = input.value.trim();
     if (!inputValue) { // pour regler le cas de quand il y a rien (ca affichait undifined et plein de trucs)
-        cocktailContainer.innerHTML = `<p> Please tap an ingredient or a cocktail name 🍋🍸</p>`
+        cocktailContainer.innerHTML = `<center><p> Please tap an ingredient or a cocktail name 🍋🍸</p></center>`
         return;
     }
+    homePage.style.display = "block";
+            cocktailContainer.style.display = "block";
+
     loadCocktail(inputValue);
     form.style.display = "none";
 
-    input.value = ""; //on vide le champs de texte après chqaue click 
+    input.value = ""; //on vide le champs de texte après chaque clic 
 });
 
 
@@ -29,11 +44,9 @@ const loadCocktail = async (value) => {
         htmlAppend(data);
     }
     catch (error) {
-        console.log("error", error);
+        console.log("error reaching cocktails API", error);
     };
-
 };
-
 
 const htmlAppend = async (data) => {
     for (const item of data.drinks) {
@@ -49,7 +62,6 @@ const htmlAppend = async (data) => {
         let source = await getCocktailImageSrc(valueCocktailName);
         cocktailPage.innerHTML += `<img src=${source}>`;
 
-
         for (let i = 1; i <= 15; i++) {
             const ingredient = item["strIngredient" + i]; //item["strIngredient1"] : accès dynamique via chaîne de caractère, équivalent de item.Stringredient1
             const measure = item["strMeasure" + i];
@@ -59,8 +71,6 @@ const htmlAppend = async (data) => {
         };
 
         cocktailPage.innerHTML += `<p>${item.strInstructions}</p>`
-
-
     };
 };
 
@@ -72,12 +82,12 @@ const getCocktailImageSrc = async (value) => {
             }
         });
         const data = await response.json();
-        console.log("dataomage", data)
+        console.log("dataimage", data)
         const imageSrc = data.photos[0].src.large;
         return imageSrc;
 
     } catch (error) {
-        console.log("erreur :", error);
+        console.log("error reaching image API:", error);
     }
 };
 
@@ -87,4 +97,4 @@ const menu = document.querySelector("#nav-menu")
 
 toggle.addEventListener("click", () => {
     menu.classList.toggle("hidden")
-}) 
+})
