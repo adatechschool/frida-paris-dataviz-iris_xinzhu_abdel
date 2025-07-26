@@ -14,4 +14,9 @@
 - séparation de la fonction affichage du fetch 
 - switch de page Homepage et fichecocktail 
 
+25/07
+- finalisation mise en page du landing page
+- mise en page de la page des cocktails
+
+
 
