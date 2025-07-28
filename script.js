@@ -1,4 +1,4 @@
-// import { chooseMenu } from "./menuChoice";
+import { about } from "./dataAbout.js";
 
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
@@ -242,7 +242,7 @@ const ageInterface = () => {
   });
 
 };
-
+//redirection des choix du menu hamburger;
 const choices = document.querySelector("#choices");
 const menuFrida = document.querySelector("#menuFrida");
 const aboutUs = document.querySelector ("#aboutUs");
@@ -262,8 +262,19 @@ choices.addEventListener("click", (event) =>{
         hide(aboutUs);
     }
     if (clickedText === "About Us"){
-        show(aboutUs);
+        aboutUs.style.display="flex";
+        showAbout();
         hide(menuFrida);
         hide(homePage);
     }
     });
+
+const showAbout = () =>{
+  document.querySelector("#aboutText").innerHTML = 
+  `<h3>${about.team}</h3>
+  <ul>
+  <li>${about.abdel}</li>
+  <li>${about.iris}</li>
+  <li>${about.xinzhu}</li>
+  </ul>`
+}
