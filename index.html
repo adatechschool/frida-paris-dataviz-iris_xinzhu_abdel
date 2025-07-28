@@ -7,7 +7,7 @@
     <title>Cocktail</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
-    <script defer src="script.js"></script>
+    <script defer type="module" src="script.js"></script>
 </head>
 
 <body>
@@ -21,10 +21,10 @@
             </svg>
         </button>
         <nav id="nav-menu" class="hidden">
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul id="choices">
+                <li><a href="#homePage">Homepage</a></li>
+                <li><a href="#menuFrida">Menu Frida</a></li>
+                <li><a href="#aboutUs">About Us</a></li>
             </ul>
         </nav>
     </header>
@@ -39,8 +39,27 @@
             <button id="submitBtn">Find My Cockt'Ada</button>
         </form>
     </div>
+
     <div id="cocktailContainer">
     </div>
+
+    <div id="menuFrida">
+
+    </div>
+    <div id="aboutUs">
+        <h3>About Us</h3>
+        <img id="picTeam alt="about us">
+        <p id="aboutUsText"></p>
+        <div id="abdel">
+            <img src="" alt="">
+            <p>Abdel </p>
+        </div>
+
+        <div id="iris"></div>
+        <div id="xinzhu"></div>
+    </div>
+
+
     <footer id="legalNotice" class="footer"></footer>
 </body>
 </html>
