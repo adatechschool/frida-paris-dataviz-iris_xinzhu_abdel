@@ -256,11 +256,13 @@ choices.addEventListener("click", (event) =>{
         show(homePage);
         hide(menuFrida);
         hide(aboutUs);
+        hide(cocktailContainer)
     }
     if (clickedText === "Menu Frida"){
         show(menuFrida);
         hide(homePage);
         hide(aboutUs);
+        hide(cocktailContainer)
 
         menuFrida.innerHTML=""
         showMenuFrida()
@@ -269,6 +271,7 @@ choices.addEventListener("click", (event) =>{
         show(aboutUs);
         hide(menuFrida);
         hide(homePage);
+        hide(cocktailContainer)
     }
     });
 
@@ -301,7 +304,7 @@ const showMenuFrida = () =>{
     const ul = document.createElement("ul")
     ul.classList.add("ingredientList")
     divTxt.appendChild(ul)
-    
+
     element.ingredients.forEach(ing => {
       const li = document.createElement("li");
       li.textContent = `${ing.name} : ${ing.measure}`;
