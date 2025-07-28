@@ -18,7 +18,7 @@ hide(ageCheckingDiv);
 show(homePage);
 
 //legal notice alcool
-legalNotice.innerHTML = `<a>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</a>`;
+legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</p>`;
 
 ///
 /// formulaire de recherche 
@@ -140,7 +140,7 @@ toggle.addEventListener("click", () => {
 const agePopupHTML = () => { //style="display: none;"
   ageCheckingDiv.innerHTML = `
     <form id="form2">
-    <p> what is your birth date ?</p>
+    <p>What is your birth date ?</p>
     <input class="ageInputs" id="month" placeholder="MM"/>
     <input class="ageInputs" id="day" placeholder="DD"/>
     <input class="ageInputs" id="year" placeholder="YYYY"/>
@@ -177,6 +177,7 @@ const ageInterface = () => {
   //HTML dynamique du pop up activé 
   agePopupHTML();
   show(ageCheckingDiv);
+  console.log("popup ajouté :", document.querySelector("#form2"));
 
   // au click :
   form2.addEventListener("submit", (e) => {
@@ -193,7 +194,7 @@ const ageInterface = () => {
       resetBirthInputs();
       return;
     }
-    else if (dd < 01 || dd > 31 || mm < 01 || mm > 12 || yyyy < 999 || yyyy >= 9999) {
+    else if (dd < 1 || dd > 31 || mm < 1 || mm > 12 || yyyy < 999 || yyyy >= 9999) {
       alert("Valid birthdate format : MM DD YYYY");
       resetBirthInputs();
       return;

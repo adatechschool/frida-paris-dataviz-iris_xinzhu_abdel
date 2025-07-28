@@ -18,9 +18,9 @@ header {
     z-index: 1000;
 }
 
-.errorIngredient{
+.errorIngredient {
     margin-top: 30rem;
-    color: #f7dbaf ;
+    color: #f7dbaf;
     font-size: 1.5rem;
 }
 
@@ -95,12 +95,12 @@ body {
     justify-content: center;
 }
 
-form {
+#form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 400px;
-    background-color: #000000;
+    background-color: #rgba(0, 0, 0, 0.05);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -148,7 +148,7 @@ form {
     margin-top: 400px;
     align-items: center;
     text-align: center;
-    
+
 }
 
 .eachResultat {
@@ -161,50 +161,51 @@ form {
     margin: 15rem auto;
     width: 55%;
     box-shadow: 0 0 40px #db1906, 0 0 40px #000000;
-  }
-  
-  .imgCocktail {
+}
+
+.imgCocktail {
     display: flex;
     gap: 2rem;
     align-items: center;
     max-width: 800px;
     width: 100%;
-  }
-  
-  .cocktailImage {
+}
+
+.cocktailImage {
     width: 400px;
     height: 400px;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 0 8px #db1906, 0 0 16px #a8b7b7;
-  }
-  
-  .textContainer {
+}
+
+.textContainer {
     flex: 1;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-  
-  .textContainer h2 {
+}
+
+.textContainer h2 {
     margin-top: 0;
     font-size: 2rem;
     color: #db1906;
-  }
-  
-  .textContainer p {
+}
+
+.textContainer p {
     font-size: 1rem;
     color: #f7dbaf;
-  }
-  
-  .ingredientList {
+}
+
+.ingredientList {
     margin-top: 1rem;
     padding-left: 1rem;
     color: #f7dbaf;
     text-align: center;
-  }
-    #legalNotice{
+}
+
+#legalNotice {
     color: rgba(255, 0, 0, 0.0.1);
     position: fixed;
     text-align: center;
@@ -212,4 +213,37 @@ form {
     bottom: 0;
     width: 100%;
     padding: 10px;
-  }
+}
+
+#ageChecking {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,0,0,0.4);
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form2 {
+    flex: 0 0 auto;
+    width: 45%;
+    height: 20%;
+    
+    background-color: rgba(0,0,0,0.4)
+}
+
+
+/*
+  div ageChecking
+  form :
+  id="form2"
+  
+  bouton :
+  id="submitAgeBtn"
+
+  inputs :
+  class="ageInputs" id="month"
+  class="ageInputs" id="day"
+  class="ageInputs" id="year" 
+
+  */
