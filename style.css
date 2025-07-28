@@ -67,7 +67,9 @@ header {
     text-decoration: none;
     color: #db1906;
 }
-
+#aboutUs, #menuFrida {
+    display: none;
+}
 body {
     background-image: url("/img/background1.png");
     background-repeat: no-repeat;
@@ -213,3 +215,5 @@ form {
     width: 100%;
     padding: 10px;
   }
+
+ 

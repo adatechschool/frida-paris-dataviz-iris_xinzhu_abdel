@@ -1,3 +1,5 @@
+// import { chooseMenu } from "./menuChoice";
+
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
@@ -17,6 +19,7 @@ let ageAlreadyChecked = false;
 hide(ageCheckingDiv);
 show(homePage);
 
+
 //legal notice alcool
 legalNotice.innerHTML = `<a>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</a>`;
 
@@ -31,7 +34,7 @@ form.addEventListener("submit", (event) => {
   if (!ageAlreadyChecked) {
     ageInterface();
     return;
-  }
+  };
 
   const inputValue = input.value.trim();
   if (!inputValue) { // pour regler le cas de quand il y a rien (ca affichait undifined et plein de trucs)
@@ -115,7 +118,6 @@ const getCocktailImageSrc = async (value) => {
       }
     });
     const data = await response.json();
-    console.log("dataimage", data);
     const imageSrc = data.photos[0].src.large;
     return imageSrc;
 
@@ -193,7 +195,7 @@ const ageInterface = () => {
       resetBirthInputs();
       return;
     }
-    else if (dd < 01 || dd > 31 || mm < 01 || mm > 12 || yyyy < 999 || yyyy >= 9999) {
+    else if (dd < 1 || dd > 31 || mm < 1 || mm > 12 || yyyy < 999 || yyyy >= 9999) {
       alert("Valid birthdate format : MM DD YYYY");
       resetBirthInputs();
       return;
@@ -239,4 +241,29 @@ const ageInterface = () => {
 
   });
 
-}
+};
+
+const choices = document.querySelector("#choices");
+const menuFrida = document.querySelector("#menuFrida");
+const aboutUs = document.querySelector ("#aboutUs");
+
+choices.addEventListener("click", (event) =>{
+    event.preventDefault();
+
+    const clickedText = event.target.innerHTML;
+    if (clickedText === "Homepage"){
+        show(homePage);
+        hide(menuFrida);
+        hide(aboutUs);
+    }
+    if (clickedText === "Menu Frida"){
+        show(menuFrida);
+        hide(homePage);
+        hide(aboutUs);
+    }
+    if (clickedText === "About Us"){
+        show(aboutUs);
+        hide(menuFrida);
+        hide(homePage);
+    }
+    });
