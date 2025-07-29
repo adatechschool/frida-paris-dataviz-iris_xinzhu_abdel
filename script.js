@@ -1,12 +1,13 @@
-import { about } from "./dataAbout.js";
+import { menuHamburger } from "./menuHamburger.js";
 
-import { fridaCocktails } from "./menuFrida.js";
+
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
 const ageCheckingDiv = document.querySelector("#ageChecking");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
+const choices = document.querySelector("#choices");
 
 
 const AGE_KEY = "ageChecked";
@@ -286,87 +287,9 @@ const ageInterface = () => {
   });
 
 };
-//redirection des choix du menu hamburger;
-const choices = document.querySelector("#choices");
-const menuFrida = document.querySelector("#menuFrida");
-const aboutUs = document.querySelector("#aboutUs");
 
-choices.addEventListener("click", (event) => {
-  event.preventDefault();
+menuHamburger(choices);
 
-  const clickedText = event.target.innerHTML;
-  if (clickedText === "Homepage") {
-    show(homePage);
-    hide(menuFrida);
-    hide(aboutUs);
-    hide(cocktailContainer)
-  }
-  if (clickedText === "Menu Frida") {
-    show(menuFrida);
-    hide(homePage);
-    hide(aboutUs);
-    hide(cocktailContainer)
 
-    menuFrida.innerHTML = ""
-    showMenuFrida()
-  }
-  if (clickedText === "About Us") {
-    aboutUs.style.display = "flex";
-    showAbout();
-    hide(menuFrida);
-    hide(homePage);
-    hide(cocktailContainer)
-  }
-});
 
-const showAbout = () => {
-  document.querySelector("#aboutText").innerHTML =
-    `<h3>${about.team}</h3>
-  <ul>
-  <li>${about.abdel}</li>
-  <li>${about.iris}</li>
-  <li>${about.xinzhu}</li>
-  </ul>`
-}
 
-const showMenuFrida = () => {
-  fridaCocktails.forEach(element => {
-
-    const cocktailPage = document.createElement("div");
-    cocktailPage.classList.add("eachResultat");
-    menuFrida.appendChild(cocktailPage);
-
-    const divImg = document.createElement("div");
-    divImg.classList.add("imgCocktail");
-    cocktailPage.appendChild(divImg);
-
-    const image = document.createElement("img");
-    image.classList.add("cocktailImage");
-    image.src = element.image;
-    image.alt = element.title;
-    divImg.appendChild(image);
-
-    const divTxt = document.createElement("div");
-    divTxt.classList.add("textContainer");
-    divImg.appendChild(divTxt);
-
-    const h2 = document.createElement("h2");
-    h2.classList.add("cocktailName");
-    h2.innerHTML = element.title;
-    divTxt.appendChild(h2);
-
-    const p = document.createElement("p");
-    p.innerHTML = element.description;
-    divTxt.appendChild(p);
-
-    const ul = document.createElement("ul");
-    ul.classList.add("ingredientList");
-
-    element.ingredients.forEach(ing => {
-      const li = document.createElement("li");
-      li.textContent = `${ing.name} : ${ing.measure}`;
-      ul.appendChild(li);
-    });
-    divTxt.appendChild(ul);
-  });
-};
