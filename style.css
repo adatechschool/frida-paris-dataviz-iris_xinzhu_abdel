@@ -226,30 +226,44 @@ body {
     align-items: center;
 }
 
+/* Le formulaire qui contient tout (titre + inputs + bouton) */
 #form2 {
-    flex: 0 0 auto;
-    width: 320px;
-    height: 150px;
-    background-color: rgba(0,0,0,0.4);
-    border-radius: 20px;
-    font-size: 10px;
+    display: flex; /* Permet d'aligner les éléments enfants en colonne */
+    flex-direction: column; /* Chaque élément est empilé verticalement */
+    align-items: center; /* Centre les enfants horizontalement */
+    gap: 20px; /* Espace vertical entre les enfants (titre, inputs, bouton) */
+    margin-top: 80px; /* Décalage du haut de la page */
+    background-color: rgba(255, 0, 0, 0.5);
+    height: 200px;
+    width: 400px;
+    border-radius: 10px;
+    border: 5px solid #db1906; /* bordure rouge visible */
 }
 
+/* La boîte qui regroupe les 3 champs de date */
+#ageInputs {
+    display: flex; /* Aligne les inputs en ligne */
+    flex-direction: row; /* Pas obligatoire, c’est la valeur par défaut */
+    gap: 20px; /* Espace horizontal entre les inputs */
+    justify-content: center; /* Centre les inputs dans la boîte */
+}
 
-/*
-  div ageChecking
-  form :
-  id="form2"
-  
-  bouton :
-  id="submitAgeBtn"
+/* Tous les champs de type input (jour, mois, année) */
+.ageInputs {
+    width: 80px; /* Largeur fixe de chaque champ */
+    padding: 10px; /* Espace intérieur (haut/bas/gauche/droite) */
+    font-size: 16px; /* Taille du texte à l’intérieur */
+    border-radius: 8px; /* Coins arrondis */
+    border: none; /* Pas de bordure classique */
+    background-color: #000; /* Fond noir */
+    color: #f7dbaf; /* Texte beige */
+    text-align: center; /* Texte centré dans chaque champ */
+    box-shadow: 0 0 5px #db1906; /* Lueur rouge autour du champ */
+}
 
-  inputs :
-  class="ageInputs" id="month"
-  class="ageInputs" id="day"
-  class="ageInputs" id="year" 
+#submitAgeBtn {
 
-  */
+}
   
 
  

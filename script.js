@@ -153,10 +153,12 @@ toggle.addEventListener("click", () => {
 const agePopupHTML = () => { //style="display: none;"
   ageCheckingDiv.innerHTML = `
     <form id="form2">
-    <h1>What is your birth date ?</h1>
+    <h4>What is your birth date ?</h4>
+    <div id="ageInputs">
     <input class="ageInputs" id="month" placeholder="MM"/>
     <input class="ageInputs" id="day" placeholder="DD"/>
     <input class="ageInputs" id="year" placeholder="YYYY"/>
+    </div>
     <button type="submit" id="submitAgeBtn"> submit </button>
     </form>`
   day = document.querySelector("#day");
