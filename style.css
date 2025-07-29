@@ -1,4 +1,3 @@
-/* Positionne le header */
 header {
     position: fixed;
     top: 0px;
@@ -67,9 +66,11 @@ header {
     text-decoration: none;
     color: #db1906;
 }
-#aboutUs, #menuFrida {
+
+#menuFrida {
     display: none;
 }
+
 body {
     background-image: url("/img/background1.png");
     background-repeat: no-repeat;
@@ -102,7 +103,7 @@ body {
     flex-direction: column;
     gap: 20px;
     margin-top: 400px;
-    background-color: #rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -162,10 +163,12 @@ body {
     border-radius: 1rem;
     margin: 15rem auto;
     width: 55%;
-    box-shadow: 0 0 40px #db1906, 0 0 40px #000000;
-}
-
-.imgCocktail {
+    background-color: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px #db1906, 0 0 40px #aa7272;
+  }
+  
+  .imgCocktail {
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -193,9 +196,9 @@ body {
     margin-top: 0;
     font-size: 2rem;
     color: #db1906;
-}
-
-.textContainer p {
+  }
+  
+  .textContainer p {
     font-size: 1rem;
     color: #f7dbaf;
 }
@@ -215,7 +218,7 @@ body {
     bottom: 0;
     width: 100%;
     padding: 10px;
-}
+  }
 
 #ageChecking {
     position: fixed;
