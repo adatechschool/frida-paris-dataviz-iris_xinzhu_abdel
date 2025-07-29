@@ -295,9 +295,9 @@ const showAbout = () =>{
   document.querySelector("#aboutText").innerHTML = 
   `<h3>${about.team}</h3>
   <ul>
-  <li>${about.abdel}</li>
-  <li>${about.iris}</li>
-  <li>${about.xinzhu}</li>
+  <li><strong>Abdel </strong>${about.abdel}</li>
+  <li><strong>Iris </strong>${about.iris}</li>
+  <li><strong>Xinzhu </strong>${about.xinzhu}</li>
   </ul>`
 }
 
@@ -345,14 +345,3 @@ const showMenuFrida = () => {
 
 
 
-
-// `
-// <div class="imgCocktail">
-//   <img class="cocktailImage" src="${source}" alt="${item.strDrink}">
-//   <div class="textContainer">
-//     <h2 class="cocktailName">${item.strDrink}</h2>
-//     <p>${item.strInstructions}</p>
-//     <ul class="ingredientList"></ul>
-//   </div>
-// </div>
-// `;

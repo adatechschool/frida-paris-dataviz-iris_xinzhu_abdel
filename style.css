@@ -166,6 +166,9 @@ body {
     background-color: rgba(0, 0, 0, 0.03);
     backdrop-filter: blur(8px);
     box-shadow: 0 0 40px #db1906, 0 0 40px #aa7272;
+    text-align: center;
+    position: relative;
+    z-index: 1;/*une couche par dessus par rapport au footer*/
   }
   
   .imgCocktail {
@@ -218,6 +221,7 @@ body {
     bottom: 0;
     width: 100%;
     padding: 10px;
+    z-index: 0; /*au arrère plan*/
   }
 
 #ageChecking {
@@ -264,9 +268,9 @@ body {
     box-shadow: 0 0 5px #db1906; /* Lueur rouge autour du champ */
 }
 
-#submitAgeBtn {
 
-}
-  
-
- 
+ /*image sur About Us*/
+ #picTeam{
+    width: 300px;
+    height:300px;
+ }
