@@ -1,10 +1,10 @@
 import { about } from "./dataAbout.js";
+import { ageInterface, ageCheckingDiv } from "./popup.js";
 
 import { fridaCocktails } from "./menuFrida.js";
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
-const ageCheckingDiv = document.querySelector("#ageChecking");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
 
@@ -14,16 +14,15 @@ const hide = (el) => el.style.display = "none";
 const show = (el) => el.style.display = "block";
 
 //Age popup variables
-let form2, day, month, year;
-let ageAlreadyChecked = false;
+let ageAlreadyChecked = false; // de base on part a faux
 
-//localStorage.clear(); // permet d'effacer le localStorageco
-const AGE_KEY = "ageChecked";
-const saved = localStorage.getItem(AGE_KEY)
-if(saved !== null){
-  ageAlreadyChecked = JSON.parse(saved);
+// localStorage.clear(); // <- -permet d'effacer le localStorage
+const AGE_KEY = "ageChecked"; //on crée une clef pour aller chercher sa value plus tard
+const saved = localStorage.getItem(AGE_KEY); //on met sa veleur dans saved
+if (saved !== null) {
+  ageAlreadyChecked = JSON.parse(saved); // si il y a qqch on le parse (car strings)
 }
-console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked)
+console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked) // etat du check
 
 
 //popup caché
@@ -40,6 +39,15 @@ legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your hea
 form.addEventListener("submit", (event) => {
 
   event.preventDefault();
+
+  //enregistre l'etat du local stroage et renvoie valeur si présente
+  const savedScript = localStorage.getItem(AGE_KEY);
+  if (savedScript !== null) {
+    ageAlreadyChecked = JSON.parse(savedScript);
+  }
+  else {
+    ageAlreadyChecked = false;
+  }
 
   //si l'age n'a pas été checké
   if (!ageAlreadyChecked) {
@@ -147,153 +155,44 @@ toggle.addEventListener("click", () => {
   menu.classList.toggle("hidden");
 })
 
-///
-/// html popup Age
-///
-const agePopupHTML = () => { //style="display: none;"
-  ageCheckingDiv.innerHTML = `
-    <form id="form2">
-    <h4>What is your birth date ?</h4>
-    <div id="ageInputs">
-    <input class="ageInputs" id="month" placeholder="MM"/>
-    <input class="ageInputs" id="day" placeholder="DD"/>
-    <input class="ageInputs" id="year" placeholder="YYYY"/>
-    </div>
-    <button type="submit" id="submitAgeBtn"> submit </button>
-    </form>`
-  day = document.querySelector("#day");
-  month = document.querySelector("#month");
-  year = document.querySelector("#year");
-  form2 = document.querySelector("#form2");
-}
 
-///
-/// effacer les age inputs
-///
-const resetBirthInputs = () => {
-  [day, month, year].forEach(input => input.value = "");
-}
 
-///
-/// code pop up age
-///
-const ageInterface = () => {
-
-  //variables de dates
-  const aYearInMilis = 31557600000; //approx un an en milisecondes
-  const today = new Date(); //date du jour
-  const yearToday = new Date().getFullYear(); //année en cours
-  let dateInput;
-
-  //cacher derriere le formulaire de recherche et les resultats de recherche (eventuels)
-  hide(homePage);
-  hide(cocktailContainer);
-
-  //HTML dynamique du pop up activé 
-  agePopupHTML();
-  ageCheckingDiv.style.display = "flex";
-
-  // au click :
-  form2.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    //recuperation des inputs
-    const dd = parseInt(day.value.trim());
-    const mm = parseInt(month.value.trim());
-    const yyyy = parseInt(year.value.trim());
-
-    //partie consditions
-    if (!dd || !mm || !yyyy || isNaN(dd) || isNaN(mm) || isNaN(yyyy)) {
-      alert("You must enter valid birthdate to enter this website");
-      resetBirthInputs();
-      return;
-    }
-    else if (dd < 1 || dd > 31 || mm < 1 || mm > 12 || yyyy < 999 || yyyy >= 9999) {
-      alert("Valid birthdate format : MM DD YYYY");
-      resetBirthInputs();
-      return;
-    }
-    else if (yyyy > yearToday) { 
-      alert("So, you're born in the future ? 🛸💨");
-      resetBirthInputs();
-      return;
-    }
-    else if (yyyy < 1909) {
-      alert("That can't be 💀 ");
-      resetBirthInputs();
-      return;
-    }
-    resetBirthInputs();
-
-    // alerte anniversaire (inutile)
-    if (dd === today.getDate() && mm - 1 === today.getMonth()) {
-      alert("🥳 HAPPY BIRTHDAY TO YOU ✨🎉 ");
-      resetBirthInputs();
-    }
-
-    //partie verification age legal
-    dateInput = new Date(yyyy, mm - 1, dd); // les mois vont de 0 a 11 ds Date !
-
-    const ageMilis = today.getTime() - dateInput.getTime();
-    const captainAge = ageMilis / aYearInMilis // age en float
-
-    if (captainAge < 18) {
-      alert("You are under 18, you cannot enter this website 👋");
-      localStorage.setItem(AGE_KEY, JSON.stringify(false));
-      resetBirthInputs();
-      return;
-    }
-    else {
-      // affichage du site
-      hide(ageCheckingDiv);
-      show(homePage);
-      show(cocktailContainer);
-
-      //renvoie l'information que l'age est verifié
-      ageAlreadyChecked = true;
-      // partie Local storage
-      localStorage.setItem(AGE_KEY, JSON.stringify(true));
-    }
-
-  });
-
-};
 //redirection des choix du menu hamburger;
 const choices = document.querySelector("#choices");
 const menuFrida = document.querySelector("#menuFrida");
-const aboutUs = document.querySelector ("#aboutUs");
+const aboutUs = document.querySelector("#aboutUs");
 
-choices.addEventListener("click", (event) =>{
-    event.preventDefault();
+choices.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    const clickedText = event.target.innerHTML;
-    if (clickedText === "Homepage"){
-        show(homePage);
-        hide(menuFrida);
-        hide(aboutUs);
-        hide(cocktailContainer)
-    }
-    if (clickedText === "Menu Frida"){
-        show(menuFrida);
-        hide(homePage);
-        hide(aboutUs);
-        hide(cocktailContainer)
+  const clickedText = event.target.innerHTML;
+  if (clickedText === "Homepage") {
+    show(homePage);
+    hide(menuFrida);
+    hide(aboutUs);
+    hide(cocktailContainer)
+  }
+  if (clickedText === "Menu Frida") {
+    show(menuFrida);
+    hide(homePage);
+    hide(aboutUs);
+    hide(cocktailContainer)
 
-        menuFrida.innerHTML=""
-        showMenuFrida()
-    }
-    if (clickedText === "About Us"){
-        aboutUs.style.display="flex";
-        showAbout();
-        hide(menuFrida);
-        hide(homePage);
-        hide(cocktailContainer)
-    }
-    });
+    menuFrida.innerHTML = ""
+    showMenuFrida()
+  }
+  if (clickedText === "About Us") {
+    aboutUs.style.display = "flex";
+    showAbout();
+    hide(menuFrida);
+    hide(homePage);
+    hide(cocktailContainer)
+  }
+});
 
-const showAbout = () =>{
-  document.querySelector("#aboutText").innerHTML = 
-  `<h3>${about.team}</h3>
+const showAbout = () => {
+  document.querySelector("#aboutText").innerHTML =
+    `<h3>${about.team}</h3>
   <ul>
   <li>${about.abdel}</li>
   <li>${about.iris}</li>
@@ -303,9 +202,9 @@ const showAbout = () =>{
 
 const showMenuFrida = () => {
   fridaCocktails.forEach(element => {
-    
+
     const cocktailPage = document.createElement("div");
-    cocktailPage.classList.add("eachResultat"); 
+    cocktailPage.classList.add("eachResultat");
     menuFrida.appendChild(cocktailPage);
 
     const divImg = document.createElement("div");
