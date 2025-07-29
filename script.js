@@ -1,5 +1,6 @@
 import { about } from "./dataAbout.js";
 
+import { fridaCocktails } from "./menuFrida.js";
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
@@ -255,17 +256,23 @@ choices.addEventListener("click", (event) =>{
         show(homePage);
         hide(menuFrida);
         hide(aboutUs);
+        hide(cocktailContainer)
     }
     if (clickedText === "Menu Frida"){
         show(menuFrida);
         hide(homePage);
         hide(aboutUs);
+        hide(cocktailContainer)
+
+        menuFrida.innerHTML=""
+        showMenuFrida()
     }
     if (clickedText === "About Us"){
         aboutUs.style.display="flex";
         showAbout();
         hide(menuFrida);
         hide(homePage);
+        hide(cocktailContainer)
     }
     });
 
@@ -278,3 +285,58 @@ const showAbout = () =>{
   <li>${about.xinzhu}</li>
   </ul>`
 }
+
+const showMenuFrida = () =>{
+
+  fridaCocktails.forEach(element => {
+    const divImg = document.createElement("div")
+    divImg.classList.add("imgCocktail")
+    menuFrida.appendChild(divImg)
+  
+    const image = document.createElement("img")
+    image.classList.add("cocktailImage")
+    divImg.appendChild(image)
+    image.src = element.image
+  
+    const divTxt = document.createElement("div")
+    divTxt.classList.add("textContainer")
+    menuFrida.appendChild(divTxt)
+
+    const h2 = document.createElement("h2")
+    divTxt.appendChild(h2)
+    h2.classList.add("cocktailName")
+    h2.innerHTML= element.title
+
+    const p = document.createElement("p")
+    divTxt.appendChild(p)
+    p.innerHTML=element.description
+
+    const ul = document.createElement("ul")
+    ul.classList.add("ingredientList")
+    divTxt.appendChild(ul)
+
+    element.ingredients.forEach(ing => {
+      const li = document.createElement("li");
+      li.textContent = `${ing.name} : ${ing.measure}`;
+      ul.appendChild(li);
+    });
+
+  
+  });
+
+
+
+}
+
+
+
+// `
+// <div class="imgCocktail">
+//   <img class="cocktailImage" src="${source}" alt="${item.strDrink}">
+//   <div class="textContainer">
+//     <h2 class="cocktailName">${item.strDrink}</h2>
+//     <p>${item.strInstructions}</p>
+//     <ul class="ingredientList"></ul>
+//   </div>
+// </div>
+// `;
