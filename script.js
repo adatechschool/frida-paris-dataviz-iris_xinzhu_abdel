@@ -8,6 +8,7 @@ const ageCheckingDiv = document.querySelector("#ageChecking");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
 
+
 //afficher cacher en fleché
 const hide = (el) => el.style.display = "none";
 const show = (el) => el.style.display = "block";
@@ -16,13 +17,22 @@ const show = (el) => el.style.display = "block";
 let form2, day, month, year;
 let ageAlreadyChecked = false;
 
+//localStorage.clear(); // permet d'effacer le localStorageco
+const AGE_KEY = "ageChecked";
+const saved = localStorage.getItem(AGE_KEY)
+if(saved !== null){
+  ageAlreadyChecked = JSON.parse(saved);
+}
+console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked)
+
+
 //popup caché
 hide(ageCheckingDiv);
 show(homePage);
 
 
 //legal notice alcool
-legalNotice.innerHTML = `<a>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</a>`;
+legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</p>`;
 
 ///
 /// formulaire de recherche 
@@ -143,7 +153,7 @@ toggle.addEventListener("click", () => {
 const agePopupHTML = () => { //style="display: none;"
   ageCheckingDiv.innerHTML = `
     <form id="form2">
-    <p> what is your birth date ?</p>
+    <h1>What is your birth date ?</h1>
     <input class="ageInputs" id="month" placeholder="MM"/>
     <input class="ageInputs" id="day" placeholder="DD"/>
     <input class="ageInputs" id="year" placeholder="YYYY"/>
@@ -179,7 +189,7 @@ const ageInterface = () => {
 
   //HTML dynamique du pop up activé 
   agePopupHTML();
-  show(ageCheckingDiv);
+  ageCheckingDiv.style.display = "flex";
 
   // au click :
   form2.addEventListener("submit", (e) => {
@@ -227,6 +237,7 @@ const ageInterface = () => {
 
     if (captainAge < 18) {
       alert("You are under 18, you cannot enter this website 👋");
+      localStorage.setItem(AGE_KEY, JSON.stringify(false));
       resetBirthInputs();
       return;
     }
@@ -238,6 +249,8 @@ const ageInterface = () => {
 
       //renvoie l'information que l'age est verifié
       ageAlreadyChecked = true;
+      // partie Local storage
+      localStorage.setItem(AGE_KEY, JSON.stringify(true));
     }
 
   });
@@ -286,6 +299,7 @@ const showAbout = () =>{
   </ul>`
 }
 
+<<<<<<< HEAD
 const showMenuFrida = () =>{
 
   fridaCocktails.forEach(element => {
@@ -340,3 +354,48 @@ const showMenuFrida = () =>{
 //   </div>
 // </div>
 // `;
+=======
+    const showMenuFrida = () => {
+      fridaCocktails.forEach(element => {
+        
+        const cocktailPage = document.createElement("div");
+        cocktailPage.classList.add("eachResultat"); 
+        menuFrida.appendChild(cocktailPage);
+    
+        const divImg = document.createElement("div");
+        divImg.classList.add("imgCocktail");
+        cocktailPage.appendChild(divImg);
+    
+        const image = document.createElement("img");
+        image.classList.add("cocktailImage");
+        image.src = element.image;
+        image.alt = element.title;
+        divImg.appendChild(image);
+    
+        const divTxt = document.createElement("div");
+        divTxt.classList.add("textContainer");
+        divImg.appendChild(divTxt);
+    
+        const h2 = document.createElement("h2");
+        h2.classList.add("cocktailName");
+        h2.innerHTML = element.title;
+        divTxt.appendChild(h2);
+    
+        const p = document.createElement("p");
+        p.innerHTML = element.description;
+        divTxt.appendChild(p);
+    
+        const ul = document.createElement("ul");
+        ul.classList.add("ingredientList");
+    
+        element.ingredients.forEach(ing => {
+          const li = document.createElement("li");
+          li.textContent = `${ing.name} : ${ing.measure}`;
+          ul.appendChild(li);
+        });
+    
+        divTxt.appendChild(ul);
+      });
+    };
+    
+>>>>>>> edefb1de23782a00ddcbb4943e63f11d92333e87
