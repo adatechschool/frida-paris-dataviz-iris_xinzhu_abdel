@@ -1,6 +1,7 @@
-import { about } from "./dataAbout.js";
+import { showAbout } from "./showAbout.js";
+import { showMenuFrida } from "./showMenuFrida.js";
 
-import { fridaCocktails } from "./menuFrida.js";
+
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
@@ -291,57 +292,6 @@ choices.addEventListener("click", (event) =>{
     }
     });
 
-const showAbout = () =>{
-  document.querySelector("#aboutText").innerHTML = 
-  `<h3>${about.team}</h3>
-  <ul>
-  <li><strong>Abdel </strong>${about.abdel}</li>
-  <li><strong>Iris </strong>${about.iris}</li>
-  <li><strong>Xinzhu </strong>${about.xinzhu}</li>
-  </ul>`
-}
-
-const showMenuFrida = () => {
-  fridaCocktails.forEach(element => {
-    
-    const cocktailPage = document.createElement("div");
-    cocktailPage.classList.add("eachResultat"); 
-    menuFrida.appendChild(cocktailPage);
-
-    const divImg = document.createElement("div");
-    divImg.classList.add("imgCocktail");
-    cocktailPage.appendChild(divImg);
-
-    const image = document.createElement("img");
-    image.classList.add("cocktailImage");
-    image.src = element.image;
-    image.alt = element.title;
-    divImg.appendChild(image);
-
-    const divTxt = document.createElement("div");
-    divTxt.classList.add("textContainer");
-    divImg.appendChild(divTxt);
-
-    const h2 = document.createElement("h2");
-    h2.classList.add("cocktailName");
-    h2.innerHTML = element.title;
-    divTxt.appendChild(h2);
-
-    const p = document.createElement("p");
-    p.innerHTML = element.description;
-    divTxt.appendChild(p);
-
-    const ul = document.createElement("ul");
-    ul.classList.add("ingredientList");
-
-    element.ingredients.forEach(ing => {
-      const li = document.createElement("li");
-      li.textContent = `${ing.name} : ${ing.measure}`;
-      ul.appendChild(li);
-    });
-    divTxt.appendChild(ul);
-  });
-};
 
 
 
