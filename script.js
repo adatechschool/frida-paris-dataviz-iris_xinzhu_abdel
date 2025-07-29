@@ -17,7 +17,7 @@ const show = (el) => el.style.display = "block";
 let form2, day, month, year;
 let ageAlreadyChecked = false;
 
-localStorage.clear(); // permet d'effacer le localStorageco
+//localStorage.clear(); // permet d'effacer le localStorageco
 const AGE_KEY = "ageChecked";
 const saved = localStorage.getItem(AGE_KEY)
 if(saved !== null){
