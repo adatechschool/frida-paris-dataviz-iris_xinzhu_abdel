@@ -1,5 +1,4 @@
-import { showAbout } from "./showAbout.js";
-import { showMenuFrida } from "./showMenuFrida.js";
+import { menuHamburger } from "./menuHamburger.js";
 
 
 const form = document.querySelector("#form");
@@ -8,6 +7,7 @@ const cocktailContainer = document.querySelector("#cocktailContainer");
 const ageCheckingDiv = document.querySelector("#ageChecking");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
+const choices = document.querySelector("#choices");
 
 
 //afficher cacher en fleché
@@ -259,38 +259,8 @@ const ageInterface = () => {
   });
 
 };
-//redirection des choix du menu hamburger;
-const choices = document.querySelector("#choices");
-const menuFrida = document.querySelector("#menuFrida");
-const aboutUs = document.querySelector ("#aboutUs");
 
-choices.addEventListener("click", (event) =>{
-    event.preventDefault();
-
-    const clickedText = event.target.innerHTML;
-    if (clickedText === "Homepage"){
-        show(homePage);
-        hide(menuFrida);
-        hide(aboutUs);
-        hide(cocktailContainer)
-    }
-    if (clickedText === "Menu Frida"){
-        show(menuFrida);
-        hide(homePage);
-        hide(aboutUs);
-        hide(cocktailContainer)
-
-        menuFrida.innerHTML=""
-        showMenuFrida()
-    }
-    if (clickedText === "About Us"){
-        aboutUs.style.display="flex";
-        showAbout();
-        hide(menuFrida);
-        hide(homePage);
-        hide(cocktailContainer)
-    }
-    });
+menuHamburger(choices);
 
 
 
