@@ -1,4 +1,3 @@
-/* Positionne le header */
 header {
     position: fixed;
     top: 0px;
@@ -162,7 +161,9 @@ form {
     border-radius: 1rem;
     margin: 15rem auto;
     width: 55%;
-    box-shadow: 0 0 40px #db1906, 0 0 40px #000000;
+    background-color: rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px #db1906, 0 0 40px #aa7272;
   }
   
   .imgCocktail {
@@ -192,7 +193,8 @@ form {
   .textContainer h2 {
     margin-top: 0;
     font-size: 2rem;
-    color: #db1906;
+    color: #f7dbaf;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6)
   }
   
   .textContainer p {
@@ -214,6 +216,14 @@ form {
     bottom: 0;
     width: 100%;
     padding: 10px;
+  }
+
+  #menuFrida {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 400px;
   }
 
  
