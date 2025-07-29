@@ -9,7 +9,7 @@ const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
 const choices = document.querySelector("#choices");
 
-
+let ageAlreadyChecked = false
 const AGE_KEY = "ageChecked";
 
 //afficher cacher en fleché
@@ -272,7 +272,7 @@ const ageInterface = () => {
 
       setTimeout(() => {
         blur.style.display = "none";
-      }, 3000);
+      }, 1000);
 
       hide(ageCheckingDiv);
       show(homePage);
