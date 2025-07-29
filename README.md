@@ -18,5 +18,10 @@
 - finalisation mise en page du landing page
 - mise en page de la page des cocktails
 
+28/07
+- page about version beta : fonctionnel 
+- page Menu Frida version beta : fonctionnel 
+- page vérification d'âge version beta : fonctionnel 
+
 
 

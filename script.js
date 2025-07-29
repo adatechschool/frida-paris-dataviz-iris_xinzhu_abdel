@@ -1,4 +1,4 @@
-// import { chooseMenu } from "./menuChoice";
+import { about } from "./dataAbout.js";
 
 import { fridaCocktails } from "./menuFrida.js";
 const form = document.querySelector("#form");
@@ -8,6 +8,7 @@ const ageCheckingDiv = document.querySelector("#ageChecking");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
 
+
 //afficher cacher en fleché
 const hide = (el) => el.style.display = "none";
 const show = (el) => el.style.display = "block";
@@ -16,13 +17,22 @@ const show = (el) => el.style.display = "block";
 let form2, day, month, year;
 let ageAlreadyChecked = false;
 
+//localStorage.clear(); // permet d'effacer le localStorageco
+const AGE_KEY = "ageChecked";
+const saved = localStorage.getItem(AGE_KEY)
+if(saved !== null){
+  ageAlreadyChecked = JSON.parse(saved);
+}
+console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked)
+
+
 //popup caché
 hide(ageCheckingDiv);
 show(homePage);
 
 
 //legal notice alcool
-legalNotice.innerHTML = `<a>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</a>`;
+legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</p>`;
 
 ///
 /// formulaire de recherche 
@@ -143,7 +153,7 @@ toggle.addEventListener("click", () => {
 const agePopupHTML = () => { //style="display: none;"
   ageCheckingDiv.innerHTML = `
     <form id="form2">
-    <p> what is your birth date ?</p>
+    <h1>What is your birth date ?</h1>
     <input class="ageInputs" id="month" placeholder="MM"/>
     <input class="ageInputs" id="day" placeholder="DD"/>
     <input class="ageInputs" id="year" placeholder="YYYY"/>
@@ -179,7 +189,7 @@ const ageInterface = () => {
 
   //HTML dynamique du pop up activé 
   agePopupHTML();
-  show(ageCheckingDiv);
+  ageCheckingDiv.style.display = "flex";
 
   // au click :
   form2.addEventListener("submit", (e) => {
@@ -227,6 +237,7 @@ const ageInterface = () => {
 
     if (captainAge < 18) {
       alert("You are under 18, you cannot enter this website 👋");
+      localStorage.setItem(AGE_KEY, JSON.stringify(false));
       resetBirthInputs();
       return;
     }
@@ -238,12 +249,14 @@ const ageInterface = () => {
 
       //renvoie l'information que l'age est verifié
       ageAlreadyChecked = true;
+      // partie Local storage
+      localStorage.setItem(AGE_KEY, JSON.stringify(true));
     }
 
   });
 
 };
-
+//redirection des choix du menu hamburger;
 const choices = document.querySelector("#choices");
 const menuFrida = document.querySelector("#menuFrida");
 const aboutUs = document.querySelector ("#aboutUs");
@@ -268,14 +281,80 @@ choices.addEventListener("click", (event) =>{
         showMenuFrida()
     }
     if (clickedText === "About Us"){
-        show(aboutUs);
+        aboutUs.style.display="flex";
+        showAbout();
         hide(menuFrida);
         hide(homePage);
         hide(cocktailContainer)
     }
     });
 
+const showAbout = () =>{
+  document.querySelector("#aboutText").innerHTML = 
+  `<h3>${about.team}</h3>
+  <ul>
+  <li>${about.abdel}</li>
+  <li>${about.iris}</li>
+  <li>${about.xinzhu}</li>
+  </ul>`
+}
 
+<<<<<<< HEAD
+const showMenuFrida = () =>{
+
+  fridaCocktails.forEach(element => {
+    const divImg = document.createElement("div")
+    divImg.classList.add("imgCocktail")
+    menuFrida.appendChild(divImg)
+  
+    const image = document.createElement("img")
+    image.classList.add("cocktailImage")
+    divImg.appendChild(image)
+    image.src = element.image
+  
+    const divTxt = document.createElement("div")
+    divTxt.classList.add("textContainer")
+    menuFrida.appendChild(divTxt)
+
+    const h2 = document.createElement("h2")
+    divTxt.appendChild(h2)
+    h2.classList.add("cocktailName")
+    h2.innerHTML= element.title
+
+    const p = document.createElement("p")
+    divTxt.appendChild(p)
+    p.innerHTML=element.description
+
+    const ul = document.createElement("ul")
+    ul.classList.add("ingredientList")
+    divTxt.appendChild(ul)
+
+    element.ingredients.forEach(ing => {
+      const li = document.createElement("li");
+      li.textContent = `${ing.name} : ${ing.measure}`;
+      ul.appendChild(li);
+    });
+
+  
+  });
+
+
+
+}
+
+
+
+// `
+// <div class="imgCocktail">
+//   <img class="cocktailImage" src="${source}" alt="${item.strDrink}">
+//   <div class="textContainer">
+//     <h2 class="cocktailName">${item.strDrink}</h2>
+//     <p>${item.strInstructions}</p>
+//     <ul class="ingredientList"></ul>
+//   </div>
+// </div>
+// `;
+=======
     const showMenuFrida = () => {
       fridaCocktails.forEach(element => {
         
@@ -319,3 +398,6 @@ choices.addEventListener("click", (event) =>{
       });
     };
     
+
+    
+>>>>>>> edefb1de23782a00ddcbb4943e63f11d92333e87
