@@ -9,26 +9,44 @@ const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
 
 
+const AGE_KEY = "ageChecked";
+
 //afficher cacher en fleché
 const hide = (el) => el.style.display = "none";
 const show = (el) => el.style.display = "block";
 
 //Age popup variables
 let form2, day, month, year;
-let ageAlreadyChecked = false;
 
-//localStorage.clear(); // permet d'effacer le localStorageco
-const AGE_KEY = "ageChecked";
-const saved = localStorage.getItem(AGE_KEY)
-if(saved !== null){
-  ageAlreadyChecked = JSON.parse(saved);
-}
-console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked)
+localStorage.clear(); //
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem(AGE_KEY);
+  let ageAlreadyChecked = false;
+
+  if (saved !== null) {
+    ageAlreadyChecked = JSON.parse(saved);
+  }
+
+  if (ageAlreadyChecked) {
+    document.querySelector("#blurBackground").style.display = "none";
+    document.querySelector("#ageChecking").style.display = "none";
+    document.querySelector("#homePage").style.display = "block";
+    document.querySelector("#cocktailContainer").style.display = "block";
+  } else {
+    document.querySelector("#blurBackground").style.display = "block";
+    document.querySelector("#ageChecking").style.display = "flex";
+    document.querySelector("#homePage").style.display = "none";
+    document.querySelector("#cocktailContainer").style.display = "none";
+
+    ageInterface()
+  }
+
+  console.log("clé:", AGE_KEY, "valeur:", saved, "ageValidé:", ageAlreadyChecked);
+});
 
 
-//popup caché
-hide(ageCheckingDiv);
-show(homePage);
+
+
 
 
 //legal notice alcool
@@ -159,7 +177,7 @@ const agePopupHTML = () => { //style="display: none;"
     <input class="ageInputs" id="day" placeholder="DD"/>
     <input class="ageInputs" id="year" placeholder="YYYY"/>
     </div>
-    <button type="submit" id="submitAgeBtn"> submit </button>
+    <button type="submit" id="submitBtn"> submit </button>
     </form>`
   day = document.querySelector("#day");
   month = document.querySelector("#month");
@@ -191,7 +209,10 @@ const ageInterface = () => {
 
   //HTML dynamique du pop up activé 
   agePopupHTML();
+  document.querySelector("#blurBackground").style.display = "block";
   ageCheckingDiv.style.display = "flex";
+
+
 
   // au click :
   form2.addEventListener("submit", (e) => {
@@ -213,7 +234,7 @@ const ageInterface = () => {
       resetBirthInputs();
       return;
     }
-    else if (yyyy > yearToday) { 
+    else if (yyyy > yearToday) {
       alert("So, you're born in the future ? 🛸💨");
       resetBirthInputs();
       return;
@@ -245,6 +266,13 @@ const ageInterface = () => {
     }
     else {
       // affichage du site
+      const blur = document.querySelector("#blurBackground");
+      blur.style.opacity = "0"; // transition
+
+      setTimeout(() => {
+        blur.style.display = "none";
+      }, 3000);
+
       hide(ageCheckingDiv);
       show(homePage);
       show(cocktailContainer);
@@ -261,39 +289,39 @@ const ageInterface = () => {
 //redirection des choix du menu hamburger;
 const choices = document.querySelector("#choices");
 const menuFrida = document.querySelector("#menuFrida");
-const aboutUs = document.querySelector ("#aboutUs");
+const aboutUs = document.querySelector("#aboutUs");
 
-choices.addEventListener("click", (event) =>{
-    event.preventDefault();
+choices.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    const clickedText = event.target.innerHTML;
-    if (clickedText === "Homepage"){
-        show(homePage);
-        hide(menuFrida);
-        hide(aboutUs);
-        hide(cocktailContainer)
-    }
-    if (clickedText === "Menu Frida"){
-        show(menuFrida);
-        hide(homePage);
-        hide(aboutUs);
-        hide(cocktailContainer)
+  const clickedText = event.target.innerHTML;
+  if (clickedText === "Homepage") {
+    show(homePage);
+    hide(menuFrida);
+    hide(aboutUs);
+    hide(cocktailContainer)
+  }
+  if (clickedText === "Menu Frida") {
+    show(menuFrida);
+    hide(homePage);
+    hide(aboutUs);
+    hide(cocktailContainer)
 
-        menuFrida.innerHTML=""
-        showMenuFrida()
-    }
-    if (clickedText === "About Us"){
-        aboutUs.style.display="flex";
-        showAbout();
-        hide(menuFrida);
-        hide(homePage);
-        hide(cocktailContainer)
-    }
-    });
+    menuFrida.innerHTML = ""
+    showMenuFrida()
+  }
+  if (clickedText === "About Us") {
+    aboutUs.style.display = "flex";
+    showAbout();
+    hide(menuFrida);
+    hide(homePage);
+    hide(cocktailContainer)
+  }
+});
 
-const showAbout = () =>{
-  document.querySelector("#aboutText").innerHTML = 
-  `<h3>${about.team}</h3>
+const showAbout = () => {
+  document.querySelector("#aboutText").innerHTML =
+    `<h3>${about.team}</h3>
   <ul>
   <li>${about.abdel}</li>
   <li>${about.iris}</li>
@@ -303,9 +331,9 @@ const showAbout = () =>{
 
 const showMenuFrida = () => {
   fridaCocktails.forEach(element => {
-    
+
     const cocktailPage = document.createElement("div");
-    cocktailPage.classList.add("eachResultat"); 
+    cocktailPage.classList.add("eachResultat");
     menuFrida.appendChild(cocktailPage);
 
     const divImg = document.createElement("div");
@@ -342,17 +370,3 @@ const showMenuFrida = () => {
     divTxt.appendChild(ul);
   });
 };
-
-
-
-
-// `
-// <div class="imgCocktail">
-//   <img class="cocktailImage" src="${source}" alt="${item.strDrink}">
-//   <div class="textContainer">
-//     <h2 class="cocktailName">${item.strDrink}</h2>
-//     <p>${item.strInstructions}</p>
-//     <ul class="ingredientList"></ul>
-//   </div>
-// </div>
-// `;
