@@ -68,6 +68,16 @@ export const fridaCocktails = [
         { name: "Graines de chia", measure: "1 cuillère" }
       ],
       image: "img/menu-frida/felix-iris.jpg"
+    },
+    {
+      title: "Nasra & Abdel",
+      description: "Un cocktail vibrant et inattendu, comme leur duo électrique ⚡️",
+      ingredients: [
+        { name: "Jus de grenade", measure: "5cl" },
+        { name: "Sirop de basilic", measure: "2cl" },
+        { name: "Citron vert frais", measure: "1 quartier" }
+      ],
+      image: "img/menu-frida/nasra-abdel.png"
     }
   ];
   

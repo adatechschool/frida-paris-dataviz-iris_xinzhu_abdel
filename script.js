@@ -1,13 +1,16 @@
+import { menuHamburger } from "./menuHamburger.js";
 import { about } from "./dataAbout.js";
 import { ageInterface, ageCheckingDiv } from "./popup.js";
 
-import { fridaCocktails } from "./menuFrida.js";
 const form = document.querySelector("#form");
 const input = document.querySelector("#userInput");
 const cocktailContainer = document.querySelector("#cocktailContainer");
 const legalNotice = document.querySelector("#legalNotice");
 const homePage = document.querySelector("#homePage");
+const choices = document.querySelector("#choices");
 
+let ageAlreadyChecked = false
+const AGE_KEY = "ageChecked";
 
 //afficher cacher en fleché
 const hide = (el) => el.style.display = "none";
@@ -15,7 +18,6 @@ const show = (el) => el.style.display = "block";
 
 //Age popup variables
 let ageAlreadyChecked = false; // de base on part a faux
-
 // localStorage.clear(); // <- -permet d'effacer le localStorage
 const AGE_KEY = "ageChecked"; //on crée une clef pour aller chercher sa value plus tard
 const saved = localStorage.getItem(AGE_KEY); //on met sa veleur dans saved
@@ -28,6 +30,27 @@ console.log("clef", AGE_KEY, "saved", saved, "agebool", ageAlreadyChecked) // et
 //popup caché
 hide(ageCheckingDiv);
 show(homePage);
+
+  if (ageAlreadyChecked) {
+    document.querySelector("#blurBackground").style.display = "none";
+    document.querySelector("#ageChecking").style.display = "none";
+    document.querySelector("#homePage").style.display = "block";
+    document.querySelector("#cocktailContainer").style.display = "block";
+  } else {
+    document.querySelector("#blurBackground").style.display = "block";
+    document.querySelector("#ageChecking").style.display = "flex";
+    document.querySelector("#homePage").style.display = "none";
+    document.querySelector("#cocktailContainer").style.display = "none";
+
+    ageInterface()
+  }
+
+  console.log("clé:", AGE_KEY, "valeur:", saved, "ageValidé:", ageAlreadyChecked);
+});
+
+
+
+
 
 
 //legal notice alcool
@@ -156,102 +179,11 @@ toggle.addEventListener("click", () => {
 })
 
 
+      const blur = document.querySelector("#blurBackground");
+      blur.style.opacity = "0"; // transition
 
-//redirection des choix du menu hamburger;
-const choices = document.querySelector("#choices");
-const menuFrida = document.querySelector("#menuFrida");
-const aboutUs = document.querySelector("#aboutUs");
+      setTimeout(() => {
+        blur.style.display = "none";
+      }, 1000);
 
-choices.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  const clickedText = event.target.innerHTML;
-  if (clickedText === "Homepage") {
-    show(homePage);
-    hide(menuFrida);
-    hide(aboutUs);
-    hide(cocktailContainer)
-  }
-  if (clickedText === "Menu Frida") {
-    show(menuFrida);
-    hide(homePage);
-    hide(aboutUs);
-    hide(cocktailContainer)
-
-    menuFrida.innerHTML = ""
-    showMenuFrida()
-  }
-  if (clickedText === "About Us") {
-    aboutUs.style.display = "flex";
-    showAbout();
-    hide(menuFrida);
-    hide(homePage);
-    hide(cocktailContainer)
-  }
-});
-
-const showAbout = () => {
-  document.querySelector("#aboutText").innerHTML =
-    `<h3>${about.team}</h3>
-  <ul>
-  <li>${about.abdel}</li>
-  <li>${about.iris}</li>
-  <li>${about.xinzhu}</li>
-  </ul>`
-}
-
-const showMenuFrida = () => {
-  fridaCocktails.forEach(element => {
-
-    const cocktailPage = document.createElement("div");
-    cocktailPage.classList.add("eachResultat");
-    menuFrida.appendChild(cocktailPage);
-
-    const divImg = document.createElement("div");
-    divImg.classList.add("imgCocktail");
-    cocktailPage.appendChild(divImg);
-
-    const image = document.createElement("img");
-    image.classList.add("cocktailImage");
-    image.src = element.image;
-    image.alt = element.title;
-    divImg.appendChild(image);
-
-    const divTxt = document.createElement("div");
-    divTxt.classList.add("textContainer");
-    divImg.appendChild(divTxt);
-
-    const h2 = document.createElement("h2");
-    h2.classList.add("cocktailName");
-    h2.innerHTML = element.title;
-    divTxt.appendChild(h2);
-
-    const p = document.createElement("p");
-    p.innerHTML = element.description;
-    divTxt.appendChild(p);
-
-    const ul = document.createElement("ul");
-    ul.classList.add("ingredientList");
-
-    element.ingredients.forEach(ing => {
-      const li = document.createElement("li");
-      li.textContent = `${ing.name} : ${ing.measure}`;
-      ul.appendChild(li);
-    });
-    divTxt.appendChild(ul);
-  });
-};
-
-
-
-
-// `
-// <div class="imgCocktail">
-//   <img class="cocktailImage" src="${source}" alt="${item.strDrink}">
-//   <div class="textContainer">
-//     <h2 class="cocktailName">${item.strDrink}</h2>
-//     <p>${item.strInstructions}</p>
-//     <ul class="ingredientList"></ul>
-//   </div>
-// </div>
-// `;
+      menuHamburger(choices);
