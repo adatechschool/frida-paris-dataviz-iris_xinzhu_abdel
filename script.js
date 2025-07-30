@@ -137,7 +137,7 @@ const getCocktailImageSrc = async (value) => {
   try {
     const response = await fetch(`https://api.pexels.com/v1/search?query=cocktail%20${value}&per_page=1`, {
       headers: {
-        Authorization: "Ta_CLE_API_PEXELS_ICI"
+        Authorization: "C7HJOA6OK9x0ee4EtRgIiwUWypDEs0NYtUz9mn175yfhIKacsWTQzlrW"
       }
     });
 
