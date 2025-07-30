@@ -58,6 +58,8 @@ legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your hea
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  cocktailContainer.innerHTML= ""
+
   const savedScript = localStorage.getItem(AGE_KEY);
   ageAlreadyChecked = savedScript ? JSON.parse(savedScript) : false;
 
@@ -72,7 +74,6 @@ form.addEventListener("submit", (event) => {
     cocktailContainer.innerHTML = `<center><p> Please tap an ingredient or a cocktail name 🍋🍸</p></center>`;
     return;
   }
-
   loadCocktailFetch(inputValue);
   hide(form);
   input.value = "";
@@ -92,6 +93,7 @@ const loadCocktailFetch = async (value) => {
 
     cocktailContainer.innerHTML = "";
     htmlAppend(data);
+    cocktailContainer.style.display = "block" // pour forcer la recharge 
   } catch (error) {
     console.log("error reaching cocktails API", error);
   }

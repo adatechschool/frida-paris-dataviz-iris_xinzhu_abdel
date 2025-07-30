@@ -9,17 +9,19 @@ export const menuHamburger = (choices) => {
     const cocktailContainer = document.querySelector("#cocktailContainer");
     const homePage = document.querySelector("#homePage");
     const form = document.querySelector("#form");
+    const input = document.querySelector("#userInput");
 
     choices.addEventListener("click", (event) => {
         event.preventDefault();
 
         const clickedText = event.target.innerHTML;
         if (clickedText === "Homepage") {
-            // homePage.style.display="block";
-            menuFrida.style.display="none";
-            aboutUs.style.display="none";
+            homePage.style.display="flex";
             form.style.display="flex";
             cocktailContainer.innerHTML= ""
+            menuFrida.style.display="none";
+            aboutUs.style.display="none";
+            
         };
         if (clickedText === "Menu Frida") {
             menuFrida.style.display="block"
