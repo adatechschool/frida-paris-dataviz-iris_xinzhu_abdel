@@ -1,5 +1,4 @@
 import { menuHamburger } from "./menuHamburger.js";
-import { about } from "./dataAbout.js";
 import { ageInterface, ageCheckingDiv } from "./ageVerification.js";
 
 // Sélecteurs principaux
@@ -51,14 +50,11 @@ if (ageAlreadyChecked) {
   ageInterface();
 }
 
-// Legal notice
-legalNotice.innerHTML = `<p>Excessive alcohol consumption is harmful to your health. Please drink responsibly.</p>`;
-
 // Soumission formulaire recherche
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  cocktailContainer.innerHTML= ""
+  cocktailContainer.innerHTML = ""
 
   const savedScript = localStorage.getItem(AGE_KEY);
   ageAlreadyChecked = savedScript ? JSON.parse(savedScript) : false;
@@ -71,7 +67,8 @@ form.addEventListener("submit", (event) => {
   const inputValue = input.value.trim();
 
   if (!inputValue) {
-    cocktailContainer.innerHTML = `<center><p> Please tap an ingredient or a cocktail name 🍋🍸</p></center>`;
+    cocktailContainer.innerHTML = `<p class=errorIngredient> Please tap an ingredient or a cocktail name 🍋🍸</p>`;
+    hide(form);
     return;
   }
   loadCocktailFetch(inputValue);
@@ -86,8 +83,10 @@ const loadCocktailFetch = async (value) => {
     const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
     const data = await res.json();
 
-    if (!data.drinks) {
+    if (!data.drinks) {value
       cocktailContainer.innerHTML = `<p class=errorIngredient> Please try another ingredient or cocktail name 🍋🍸</p>`;
+      cocktailContainer.style.display = "block" // pour forcer la recharge 
+
       return;
     }
 
