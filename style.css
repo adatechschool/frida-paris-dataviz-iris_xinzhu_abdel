@@ -98,7 +98,7 @@ body {
     justify-content: center;
 }
 
-#form{
+#form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -111,7 +111,7 @@ body {
     align-items: center;
 }
 
-#userInput {
+#userInput{
     padding: 20px 40px;
     border: none;
     outline: none;
@@ -123,7 +123,8 @@ body {
     border-radius: 12px;
 }
 
-#submitBtn {
+#submitBtn,
+#submitAgeBtn {
     color: #f7dbaf;
     padding: 0.4em 0.4em;
     font-size: 17px;
@@ -137,12 +138,14 @@ body {
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-#submitBtn:hover {
+#submitBtn:hover,
+#submitAgeBtn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 16px #db1906, 0 0 32px #00ffff;
 }
 
-#submitBtn:active {
+#submitBtn:active,
+#submitAgeBtn:active {
     transform: scale(0.97);
     box-shadow: 0 0 8px #db1906, 0 0 16px #00ffff;
 }
@@ -167,11 +170,13 @@ body {
     backdrop-filter: blur(8px);
     box-shadow: 0 0 40px #db1906, 0 0 40px #aa7272;
     text-align: center;
-    position: relative; /*si on veut changer son z index*/
-    z-index: 1;/*une couche par dessus par rapport au footer*/
-  }
-  
-  .imgCocktail {
+    position: relative;
+    /*si on veut changer son z index*/
+    z-index: 1;
+    /*une couche par dessus par rapport au footer*/
+}
+
+.imgCocktail {
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -199,9 +204,9 @@ body {
     margin-top: 0;
     font-size: 2rem;
     color: #f7dbaf;
-  }
-  
-  .textContainer p {
+}
+
+.textContainer p {
     font-size: 1rem;
     color: #f7dbaf;
 }
@@ -221,17 +226,20 @@ body {
     bottom: 0;
     width: 100%;
     padding: 10px;
-    z-index: 0; /*sert à changer l'ordre d'affichage, 0 = derrière plan"*/
-  }
+    z-index: 0;
+    /*sert à changer l'ordre d'affichage, 0 = derrière plan"*/
+}
 
-  #ageChecking {
+#ageChecking {
     position: fixed;
     inset: 0;
-    background: rgba(255,0,0,0); /* ou transparent */
+    background: rgba(255, 0, 0, 0);
+    /* ou transparent */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 20; /* ✅ Plus élevé que #blurBackground */
+    z-index: 20;
+    /* ✅ Plus élevé que #blurBackground */
 }
 
 #blurBackground {
@@ -245,23 +253,30 @@ body {
     backdrop-filter: blur(8px);
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 10;
-    opacity: 1; /* pr la transition */
-    transition: opacity 0.5s ease; 
-  }
-  
-  #form2 h4 {
-        color: #f7dbaf; /* Texte beige */
+    opacity: 1;
+    /* pr la transition */
+    transition: opacity 0.5s ease;
+}
 
-  }
-  
+#form2 h4 {
+    color: #f7dbaf;
+    /* Texte beige */
+
+}
+
 
 /* Le formulaire qui contient tout (titre + inputs + bouton) */
 #form2 {
-    display: flex; /* Permet d'aligner les éléments enfants en colonne */
-    flex-direction: column; /* Chaque élément est empilé verticalement */
-    align-items: center; /* Centre les enfants horizontalement */
-    gap: 20px; /* Espace vertical entre les enfants (titre, inputs, bouton) */
-    margin-top: 80px; /* Décalage du haut de la page */
+    display: flex;
+    /* Permet d'aligner les éléments enfants en colonne */
+    flex-direction: column;
+    /* Chaque élément est empilé verticalement */
+    align-items: center;
+    /* Centre les enfants horizontalement */
+    gap: 20px;
+    /* Espace vertical entre les enfants (titre, inputs, bouton) */
+    margin-top: 80px;
+    /* Décalage du haut de la page */
     height: 220px;
     width: 700px;
     border-radius: 12px;
@@ -271,29 +286,52 @@ body {
 
 /* La boîte qui regroupe les 3 champs de date */
 #ageInputs {
-    display: flex; /* Aligne les inputs en ligne */
-    flex-direction: row; /* Pas obligatoire, c’est la valeur par défaut */
-    gap: 25px; /* Espace horizontal entre les inputs */
-    justify-content: center; /* Centre les inputs dans la boîte */
-    color:#f7dbaf;
+    display: flex;
+    /* Aligne les inputs en ligne */
+    flex-direction: row;
+    /* Pas obligatoire, c’est la valeur par défaut */
+    gap: 25px;
+    /* Espace horizontal entre les inputs */
+    justify-content: center;
+    /* Centre les inputs dans la boîte */
+    color: #f7dbaf;
 }
 
 /* Tous les champs de type input (jour, mois, année) */
 .ageInputs {
-    width: 100px; /* Largeur fixe de chaque champ */
-    padding: 14px; /* Espace intérieur (haut/bas/gauche/droite) */
-    font-size: 16px; /* Taille du texte à l’intérieur */
-    border-radius: 12px; /* Coins arrondis */
-    border: none; /* Pas de bordure classique */
-    background-color: #000; /* Fond noir */
-    color: #f7dbaf; /* Texte beige */
-    text-align: center; /* Texte centré dans chaque champ */
-    box-shadow: 0 0 5px #db1906; /* Lueur rouge autour du champ */
+    width: 100px;
+    /* Largeur fixe de chaque champ */
+    padding: 14px;
+    /* Espace intérieur (haut/bas/gauche/droite) */
+    font-size: 16px;
+    /* Taille du texte à l’intérieur */
+    border-radius: 12px;
+    /* Coins arrondis */
+    border: none;
+    /* Pas de bordure classique */
+    background-color: #000;
+    /* Fond noir */
+    color: #f7dbaf;
+    /* Texte beige */
+    text-align: center;
+    /* Texte centré dans chaque champ */
+    box-shadow: 0 0 5px #db1906;
+    /* Lueur rouge autour du champ */
 }
 
 
- /*image sur About Us*/
- #picTeam { 
+/*image sur About Us*/
+#picTeam {
     width: 300px;
-    height:300px;
- }
+    height: 300px;
+}
+
+
+#aboutUs h3 {
+    color: #f7dbaf;
+}
+
+
+.ageInputs {
+    outline: none;
+}
