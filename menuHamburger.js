@@ -7,13 +7,14 @@ export const menuHamburger = (choices) => {
     const menuFrida = document.querySelector("#menuFrida");
     const aboutUs = document.querySelector("#aboutUs");
     const cocktailContainer = document.querySelector("#cocktailContainer");
+    const homePage = document.querySelector("#homePage");
 
     choices.addEventListener("click", (event) => {
         event.preventDefault();
 
         const clickedText = event.target.innerHTML;
         if (clickedText === "Homepage") {
-            homePage.style.display="flex";
+            homePage.style.display="block";
             menuFrida.style.display="none";
             aboutUs.style.display="none";
             cocktailContainer.style.display="none";

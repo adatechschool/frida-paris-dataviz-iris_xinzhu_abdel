@@ -6,7 +6,8 @@ const hide = (el) => el.style.display = "none";
 const show = (el) => el.style.display = "block";
 
 const agePopupHTML = () => {
-    ageCheckingDiv.innerHTML = `
+    ageCheckingDiv.innerHTML =
+   `
     <form id="form2">
       <h4>What is your birth date ?</h4>
       <div id="ageInputs">
@@ -17,13 +18,11 @@ const agePopupHTML = () => {
       <button type="submit" id="submitAgeBtn"> submit </button>
     </form>
   `;
-
     day = document.querySelector("#day");
     month = document.querySelector("#month");
     year = document.querySelector("#year");
     form2 = document.querySelector("#form2");
 };
-
 const resetBirthInputs = () => {
     [day, month, year].forEach(input => input.value = "");
 };
@@ -89,17 +88,14 @@ const ageInterface = () => {
             resetBirthInputs();
             return;
         }
-
         // Age OK
         localStorage.setItem("ageChecked", JSON.stringify(true));
-
         // Animation blur
         const blur = document.querySelector("#blurBackground");
         blur.style.opacity = "0";
         setTimeout(() => {
             blur.style.display = "none";
         }, 500);
-
         // Animation formulaire
         ageCheckingDiv.style.transition = "opacity 0.5s ease";
         ageCheckingDiv.style.opacity = "1";
@@ -115,4 +111,3 @@ const ageInterface = () => {
 };
 
 export { ageInterface, ageCheckingDiv };
-
